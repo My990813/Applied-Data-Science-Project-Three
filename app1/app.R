@@ -1,4 +1,3 @@
-# app2 : Sale button's color is red.
 library(shiny)
 library(bslib)
 library(shinyjs)
@@ -8,6 +7,8 @@ ui <- fluidPage(
   useShinyjs(),
 
   tags$head(
+    includeHTML("google-analytics.html"),  # Google Analytics injection
+    tags$script(src = "https://code.jquery.com/jquery-3.6.0.min.js"),
     tags$style(HTML("
       .card {
         background-color: #f8f9fa !important; 
@@ -56,7 +57,7 @@ ui <- fluidPage(
                div(class = "card-body",
                    h5("Plain Black Shirt"),
                    p("Minimalist and versatile — a wardrobe staple for anyone into clean aesthetics."),
-                   actionButton("update", "Buy for $100 & -25% Sale", class = "btn-primary"),
+                   actionButton("update", "Buy for $100 & -25% Sale", class = "btn-sale"),
                    textOutput("time")
                )
            )
@@ -111,12 +112,10 @@ server <- function(input, output, session) {
   # Initialize user's balance
   balance <- reactiveVal(75)
 
-  # Display the remaining balance in the custom format
   output$balance_display <- renderText({
     paste("💰 Balance: $", balance())
   })
 
-  # Load images
   output$image1 <- renderImage({
     list(src = "item1.png", height = "150px")
   }, deleteFile = FALSE)
@@ -129,30 +128,25 @@ server <- function(input, output, session) {
     list(src = "item3.png", height = "150px")
   }, deleteFile = FALSE)
 
-  # Buy message for item1
   output$time <- renderText({ 
     "You already bought it"
   }) |> bindEvent(input$update)
 
-  # Buy message for item2
   output$buy_msg2 <- renderText({
     "You already bought it"
   }) |> bindEvent(input$buy2)
 
-  # Buy message for item3
   output$buy_msg3 <- renderText({
     "You already bought it"
   }) |> bindEvent(input$buy3)
 
-  # Message for not buying anything
   output$timeNew <- renderText({ 
     "Too shame"
   }) |> bindEvent(input$updateNew)
 
-  # Disable other actions when buying or not buying
   observeEvent(input$update, {
     if (balance() >= 75) {
-      balance(balance() - 75)  # Correct price for sale item
+      balance(balance() - 75)
       disable("update")
       output$time <- renderText({
         "You purchased this item with the sale!"
@@ -192,13 +186,11 @@ server <- function(input, output, session) {
     }
   })
 
-  # Store rating
   output$thankyou <- renderText({
     req(input$rating)
     paste("Thanks for rating us", paste(rep("⭐", as.numeric(input$rating)), collapse = ""), "!")
   })
 
-  # Comment submission
   observeEvent(input$submit_comment, {
     comment <- input$comment
     if (nchar(comment) > 0) {

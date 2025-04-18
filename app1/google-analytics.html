@@ -1,0 +1,58 @@
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src='https://www.googletagmanager.com/gtag/js?id=G-Q4FSDVSD7D'></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Q4FSDVSD7D');
+
+      // Track Sale button
+      $(document).on('click', '#update', function() {
+        gtag('event', 'purchase_click', {
+          event_category: 'Store',
+          event_label: 'Plain Black Shirt (Sale)'
+        });
+      });
+
+      // Track Buy2 button
+      $(document).on('click', '#buy2', function() {
+        gtag('event', 'purchase_click', {
+          event_category: 'Store',
+          event_label: 'Code Shirt'
+        });
+      });
+
+      // Track Buy3 button
+      $(document).on('click', '#buy3', function() {
+        gtag('event', 'purchase_click', {
+          event_category: 'Store',
+          event_label: 'Graphic Shirt'
+        });
+      });
+
+      // Track "Don’t Buy Anything" button
+      $(document).on('click', '#updateNew', function() {
+        gtag('event', 'decline_purchase', {
+          event_category: 'Store',
+          event_label: 'Did not buy anything'
+        });
+      });
+
+      // Track rating selection
+      $(document).on('change', 'input[name=\"rating\"]', function() {
+        gtag('event', 'rating_given', {
+          event_category: 'Feedback',
+          event_label: 'Rating: ' + $(this).val()
+        });
+      });
+
+      // Track comment submission
+      $(document).on('click', '#submit_comment', function() {
+        gtag('event', 'comment_submitted', {
+          event_category: 'Feedback',
+          event_label: 'User submitted a comment'
+        });
+      });
+    </script>
+
