@@ -6,7 +6,8 @@ And the clicking rate is recorded. In this experiment, we are going to compare d
 # Cookie-Based Assignment URL for A/B Testing
 - 50% probability redirecting to app 1 & 50% probability redirecting to app 2
 https://ruangkawprc.github.io/project3_ab_test
-[P.S. The link is generated from here: https://github.com/ruangkawprc/project3_ab_test]
+
+- P.S. The link is generated from here: https://github.com/ruangkawprc/project3_ab_test
 
 # app1
 https://ruangkawprc.shinyapps.io/app1/
