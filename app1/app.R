@@ -1,3 +1,5 @@
+# App 1: Sale button's color is similar to other buttons
+
 library(shiny)
 library(bslib)
 library(shinyjs)
@@ -5,7 +7,7 @@ library(shinyjs)
 ui <- fluidPage(
   theme = bs_theme(bootswatch = "minty", version = 5),
   useShinyjs(),
-  
+
   tags$head(
     tags$style(HTML("
       .card {
@@ -15,7 +17,7 @@ ui <- fluidPage(
       }
 
       .btn-sale {
-        background-color: #e60000 !important;  /* true red */
+        background-color: #e60000 !important;
         color: white !important;
         border: none;
       }
@@ -25,64 +27,135 @@ ui <- fluidPage(
       }
     "))
   ),
-  
+
   titlePanel("🛍️ Welcome to the Super Graphic Store"),
   tags$hr(),
-  
+
   fluidRow(
     column(4,
            div(class = "card",
-               img(src = "item1.png", height = "200px", class = "card-img-top"),
+               imageOutput("image1", height = "180px"),
                div(class = "card-body",
-                   h5("Black Shirt"),
-                   p("Classic black shirt — sleek, stylish, and always in fashion."),
-                   actionButton("update", "Buy for $100 (-25% Sale!)", class = "btn-primary"),
+                   h5("Plain Black Shirt"),
+                   p("Minimalist and versatile — a wardrobe staple for anyone into clean aesthetics."),
+                   actionButton("update", "Buy for $100 & -25% Sale", class = "btn-primary"),
                    textOutput("time")
                )
            )
     ),
     column(4,
            div(class = "card",
-               img(src = "item2.png", height = "200px", class = "card-img-top"),
+               imageOutput("image2", height = "180px"),
                div(class = "card-body",
-                   h5("Jeans"),
-                   p("Comfortable blue jeans — casual yet cool. Goes with anything."),
-                   actionButton("buy2", "Buy for $75", class = "btn-primary")
+                   h5("Code Shirt"),
+                   p("Perfect for CS students and data geeks — rep your love for binary code in style."),
+                   actionButton("buy2", "Buy for $75", class = "btn-primary"),
+                   textOutput("buy_msg2")
                )
            )
     ),
     column(4,
            div(class = "card",
-               img(src = "item3.png", height = "200px", class = "card-img-top"),
+               imageOutput("image3", height = "180px"),
                div(class = "card-body",
-                   h5("Black Dress"),
-                   p("Elegant black dress — perfect for every evening occasion."),
-                   actionButton("buy3", "Buy for $50", class = "btn-primary")
+                   h5("Graphic Shirt"),
+                   p("Bold prints and expressive design — let your shirt do the talking."),
+                   actionButton("buy3", "Buy for $50", class = "btn-primary"),
+                   textOutput("buy_msg3")
                )
            )
     )
   ),
-  
+
   tags$hr(),
   actionButton("updateNew", "Don’t Buy Anything", class = "btn-outline-danger"),
-  textOutput("timeNew")
+  textOutput("timeNew"),
+
+  tags$hr(),
+  h4("⭐ Rate the Super Graphic Store"),
+  radioButtons("rating", label = NULL,
+               choices = c("⭐" = 1, "⭐⭐" = 2, "⭐⭐⭐" = 3, "⭐⭐⭐⭐" = 4, "⭐⭐⭐⭐⭐" = 5),
+               inline = TRUE),
+  textOutput("thankyou"),
+
+  tags$hr(),
+  h4("💬 Leave a Comment"),
+  textAreaInput("comment", label = NULL, 
+                placeholder = "Tell us what you think or how we can improve!", 
+                rows = 4),
+  actionButton("submit_comment", "Submit Comment", class = "btn-success"),
+  textOutput("comment_response")
 )
 
 server <- function(input, output, session) {
+  # Load images
+  output$image1 <- renderImage({
+    list(src = "item1.png", height = "180px")
+  }, deleteFile = FALSE)
+
+  output$image2 <- renderImage({
+    list(src = "item2.png", height = "180px")
+  }, deleteFile = FALSE)
+
+  output$image3 <- renderImage({
+    list(src = "item3.png", height = "180px")
+  }, deleteFile = FALSE)
+
+  # Buy message for item1
   output$time <- renderText({ 
     "You already bought it"
   }) |> bindEvent(input$update)
-  
+
+  # Buy message for item2
+  output$buy_msg2 <- renderText({
+    "You already bought it"
+  }) |> bindEvent(input$buy2)
+
+  # Buy message for item3
+  output$buy_msg3 <- renderText({
+    "You already bought it"
+  }) |> bindEvent(input$buy3)
+
+  # Message for not buying anything
   output$timeNew <- renderText({ 
     "Too shame"
   }) |> bindEvent(input$updateNew)
-  
+
+  # Disable other actions when buying or not buying
   observeEvent(input$update, {
     disable("updateNew")
   })
-  
+
   observeEvent(input$updateNew, {
     disable("update")
+  })
+
+  observeEvent(input$buy2, {
+    disable("buy2")
+  })
+
+  observeEvent(input$buy3, {
+    disable("buy3")
+  })
+
+  # Store rating
+  output$thankyou <- renderText({
+    req(input$rating)
+    paste("Thanks for rating us", paste(rep("⭐", as.numeric(input$rating)), collapse = ""), "!")
+  })
+
+  # Comment submission
+  observeEvent(input$submit_comment, {
+    comment <- input$comment
+    if (nchar(comment) > 0) {
+      output$comment_response <- renderText({
+        paste("Thank you for your feedback:", comment)
+      })
+    } else {
+      output$comment_response <- renderText({
+        "Please write something before submitting!"
+      })
+    }
   })
 }
 

@@ -18,13 +18,32 @@ ui <- fluidPage(
         background-color: #e60000 !important;
         color: white !important;
         border: none;
+        font-weight: bold;
       }
 
       .btn-sale:hover {
         background-color: #cc0000 !important;
       }
+      
+      .balance {
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #007bff;
+        margin-bottom: 20px;
+      }
     "))
   ),
+
+  # Balance display section
+  fluidRow(
+    column(12,
+           div(class = "balance",
+               textOutput("balance_display")
+           )
+    )
+  ),
+  
+  tags$hr(),
 
   titlePanel("🛍️ Welcome to the Super Graphic Store"),
   tags$hr(),
@@ -32,18 +51,18 @@ ui <- fluidPage(
   fluidRow(
     column(4,
            div(class = "card",
-               imageOutput("image1", height = "180px"),
+               imageOutput("image1", height = "150px"),
                div(class = "card-body",
                    h5("Plain Black Shirt"),
                    p("Minimalist and versatile — a wardrobe staple for anyone into clean aesthetics."),
-                   actionButton("update", "Buy for $100 (-25% Sale!)", class = "btn-sale"),
+                   actionButton("update", "Buy for $100 & -25% Sale", class = "btn-sale"),
                    textOutput("time")
                )
            )
     ),
     column(4,
            div(class = "card",
-               imageOutput("image2", height = "180px"),
+               imageOutput("image2", height = "150px"),
                div(class = "card-body",
                    h5("Code Shirt"),
                    p("Perfect for CS students and data geeks — rep your love for binary code in style."),
@@ -54,7 +73,7 @@ ui <- fluidPage(
     ),
     column(4,
            div(class = "card",
-               imageOutput("image3", height = "180px"),
+               imageOutput("image3", height = "150px"),
                div(class = "card-body",
                    h5("Graphic Shirt"),
                    p("Bold prints and expressive design — let your shirt do the talking."),
@@ -82,21 +101,31 @@ ui <- fluidPage(
                 placeholder = "Tell us what you think or how we can improve!", 
                 rows = 4),
   actionButton("submit_comment", "Submit Comment", class = "btn-success"),
-  textOutput("comment_response")
+  textOutput("comment_response"),
+
+  tags$hr()
 )
 
 server <- function(input, output, session) {
+  # Initialize user's balance
+  balance <- reactiveVal(75)
+
+  # Display the remaining balance in the custom format
+  output$balance_display <- renderText({
+    paste("💰 Balance: $", balance())
+  })
+
   # Load images
   output$image1 <- renderImage({
-    list(src = "item1.png", height = "180px")
+    list(src = "item1.png", height = "150px")
   }, deleteFile = FALSE)
 
   output$image2 <- renderImage({
-    list(src = "item2.png", height = "180px")
+    list(src = "item2.png", height = "150px")
   }, deleteFile = FALSE)
 
   output$image3 <- renderImage({
-    list(src = "item3.png", height = "180px")
+    list(src = "item3.png", height = "150px")
   }, deleteFile = FALSE)
 
   # Buy message for item1
@@ -121,19 +150,45 @@ server <- function(input, output, session) {
 
   # Disable other actions when buying or not buying
   observeEvent(input$update, {
-    disable("updateNew")
-  })
-
-  observeEvent(input$updateNew, {
-    disable("update")
+    if (balance() >= 75) {
+      balance(balance() - 75)  # Correct price for sale item
+      disable("update")
+      output$time <- renderText({
+        "You purchased this item with the sale!"
+      })
+    } else {
+      output$time <- renderText({
+        "Insufficient funds to buy this item."
+      })
+    }
   })
 
   observeEvent(input$buy2, {
-    disable("buy2")
+    if (balance() >= 75) {
+      balance(balance() - 75)
+      disable("buy2")
+      output$buy_msg2 <- renderText({
+        "You purchased this item!"
+      })
+    } else {
+      output$buy_msg2 <- renderText({
+        "Insufficient funds to buy this item."
+      })
+    }
   })
 
   observeEvent(input$buy3, {
-    disable("buy3")
+    if (balance() >= 50) {
+      balance(balance() - 50)
+      disable("buy3")
+      output$buy_msg3 <- renderText({
+        "You purchased this item!"
+      })
+    } else {
+      output$buy_msg3 <- renderText({
+        "Insufficient funds to buy this item."
+      })
+    }
   })
 
   # Store rating
