@@ -1,58 +1,52 @@
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src='https://www.googletagmanager.com/gtag/js?id=G-Q4FSDVSD7D'></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-Q4FSDVSD7D');
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src='https://www.googletagmanager.com/gtag/js?id=G-Q4FSDVSD7D'></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Q4FSDVSD7D');
 
-      // Track Sale button
-      $(document).on('click', '#update', function() {
-        gtag('event', 'purchase_click', {
-          event_category: 'Store',
-          event_label: 'Plain Black Shirt (Sale)'
-        });
-      });
+  // Track Sale button
+  $(document).on('click', '#update', function() {
+    gtag('event', 'purchase_click_plain_black_shirt_sale', {
+      event_category: 'Store'
+    });
+  });
 
-      // Track Buy2 button
-      $(document).on('click', '#buy2', function() {
-        gtag('event', 'purchase_click', {
-          event_category: 'Store',
-          event_label: 'Code Shirt'
-        });
-      });
+  // Track Buy2 button
+  $(document).on('click', '#buy2', function() {
+    gtag('event', 'purchase_click_code_shirt', {
+      event_category: 'Store'
+    });
+  });
 
-      // Track Buy3 button
-      $(document).on('click', '#buy3', function() {
-        gtag('event', 'purchase_click', {
-          event_category: 'Store',
-          event_label: 'Graphic Shirt'
-        });
-      });
+  // Track Buy3 button
+  $(document).on('click', '#buy3', function() {
+    gtag('event', 'purchase_click_graphic_shirt', {
+      event_category: 'Store'
+    });
+  });
 
-      // Track "Don’t Buy Anything" button
-      $(document).on('click', '#updateNew', function() {
-        gtag('event', 'decline_purchase', {
-          event_category: 'Store',
-          event_label: 'Did not buy anything'
-        });
-      });
+  // Track "Don’t Buy Anything" button
+  $(document).on('click', '#updateNew', function() {
+    gtag('event', 'decline_purchase_did_not_buy_anything', {
+      event_category: 'Store'
+    });
+  });
 
-      // Track rating selection
-      $(document).on('change', 'input[name=\"rating\"]', function() {
-        gtag('event', 'rating_given', {
-          event_category: 'Feedback',
-          event_label: 'Rating: ' + $(this).val()
-        });
-      });
+  // Track rating selection
+  $(document).on('change', 'input[name="rating"]', function() {
+    const rating = $(this).val();
+    gtag('event', `rating_given_${rating}`, {
+      event_category: 'Feedback'
+    });
+  });
 
-      // Track comment submission
-      $(document).on('click', '#submit_comment', function() {
-        gtag('event', 'comment_submitted', {
-          event_category: 'Feedback',
-          event_label: 'User submitted a comment'
-        });
-      });
-    </script>
-
+  // Track comment submission
+  $(document).on('click', '#submit_comment', function() {
+    gtag('event', 'comment_submitted_user_submitted_comment', {
+      event_category: 'Feedback'
+    });
+  });
+</script>
