@@ -39,12 +39,12 @@ df_clean
 ```{r}
 library(dplyr)
 
-set.seed(123)  # 可重复随机
+set.seed(123)  
 
-# 分开两个 group
+
 df_clean <- df_clean %>% mutate(click_black_buy = 0)
 
-# 对于 Group 1
+
 group1_ids <- df_clean %>% filter(group == 1) %>% pull(...1)  # 用户唯一标识符
 chosen1 <- sample(group1_ids, 6)
 clicks1 <- sample(1:14, 6, replace = TRUE)
@@ -55,7 +55,7 @@ for (i in seq_along(chosen1)) {
   df_clean$click_black_buy[df_clean$...1 == chosen1[i]] <- clicks1[i]
 }
 
-# 对于 Group 2
+
 group2_ids <- df_clean %>% filter(group == 2) %>% pull(...1)
 chosen2 <- sample(group2_ids, 5)
 clicks2 <- sample(1:10, 5, replace = TRUE)
