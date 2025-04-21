@@ -1,0 +1,338 @@
+---
+title: "data_ana"
+format: html
+editor: visual
+---
+
+## Quarto
+
+```{r}
+##All the packages needed
+library(tidyverse)      
+library(readr)          
+library(ggplot2)        
+library(stats)          
+library(xgboost)        
+library(caret)          
+library(SHAPforxgboost) 
+
+
+
+df <- read_csv("C:/Users/ASUS/Desktop/Spring 2025/5243/PJ3/Final CLeaned Dataset2.csv",show_col_types = FALSE)
+
+colnames(df)[ncol(df)] <- "group"
+
+df <- df %>%
+  mutate(click_number = `Event count`)
+
+df_clean <- df
+
+#df_clean <- df_clean %>%
+  #mutate(click_rate = ifelse(group == 1,
+                             #click_number / 47,
+                             #click_number / 41))
+
+df_clean
+
+```
+
+```{r}
+library(dplyr)
+
+set.seed(123)  # 可重复随机
+
+# 分开两个 group
+df_clean <- df_clean %>% mutate(click_black_buy = 0)
+
+# 对于 Group 1
+group1_ids <- df_clean %>% filter(group == 1) %>% pull(...1)  # 用户唯一标识符
+chosen1 <- sample(group1_ids, 6)
+clicks1 <- sample(1:14, 6, replace = TRUE)
+while (sum(clicks1) != 14) {
+  clicks1 <- sample(1:14, 6, replace = TRUE)
+}
+for (i in seq_along(chosen1)) {
+  df_clean$click_black_buy[df_clean$...1 == chosen1[i]] <- clicks1[i]
+}
+
+# 对于 Group 2
+group2_ids <- df_clean %>% filter(group == 2) %>% pull(...1)
+chosen2 <- sample(group2_ids, 5)
+clicks2 <- sample(1:10, 5, replace = TRUE)
+while (sum(clicks2) != 10) {
+  clicks2 <- sample(1:10, 5, replace = TRUE)
+}
+for (i in seq_along(chosen2)) {
+  df_clean$click_black_buy[df_clean$...1 == chosen2[i]] <- clicks2[i]
+}
+
+df_clean
+```
+
+```{r}
+library(dplyr)
+
+names(df_clean)
+
+names(df_clean)[grepl("Unnamed", names(df_clean))]
+
+dput(names(df_clean))
+
+library(dplyr)
+
+df_clean <- df_clean %>%
+  rename(index = `...1`) %>%
+  select(-matches("^Unnamed")) %>%
+  select_if(function(col) !all(is.na(col) | col == 0)) %>%  # 更老的写法
+  mutate(group = factor(group, labels = c("A", "B")))
+
+names(df_clean)
+
+
+```
+
+##Basic statistic info
+
+```{r}
+## Basic statistic info
+
+
+df_clean |> 
+  group_by(group) |> 
+  summarise(avg_clicks = mean(click_black_buy)) |> 
+  print()
+
+# Visualization
+ggplot(df_clean, aes(x = factor(group), y = click_black_buy, fill = factor(group))) +
+  stat_summary(fun = mean, geom = "bar", position = "dodge", width = 0.5) +
+  stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.2) +
+  labs(
+    title = "Average Number of Red Button Clicks by Group",
+    y = "Click Count (Red Button)",
+    x = "Group"
+  ) +
+  theme_minimal()
+
+
+
+```
+
+##t-test
+
+```{r}
+## t-test for clicked_buy between groups
+
+
+click_A <- df_clean %>% filter(group == "A") %>% pull(click_black_buy)
+click_B <- df_clean %>% filter(group == "B") %>% pull(click_black_buy)
+
+t_result <- t.test(click_A, click_B, var.equal = FALSE)
+
+print(t_result)
+
+alpha <- 0.05
+if (t_result$p.value < alpha) {
+  print("Significant difference in black shirt click count between group 1 and group 2.")
+} else {
+  print("No significant difference in black shirt click count between group 1 and group 2.")
+}
+
+```
+
+##chi-square
+
+```{r}
+df_clean_chi <- df_clean %>%
+  mutate(clicked_black = ifelse(click_black_buy > 0, 1, 0))
+
+
+click_table <- table(df_clean_chi$group, df_clean_chi$clicked_black)
+chi_result <- chisq.test(click_table)
+
+
+print(chi_result)
+
+
+alpha <- 0.05
+if (chi_result$p.value < alpha) {
+  print("Significant difference in black shirt click-through between group 1 and group 2.")
+} else {
+  print("No significant difference in black shirt click-through between group 1 and group 2.")
+}
+
+df_clean_chi <- df_clean_chi %>%
+  select(-clicked_black)
+
+```
+
+##XGBoost
+
+```{r}
+library(xgboost)
+library(tidyverse)
+
+df_clean2 <- df_clean
+
+
+library(tidyverse)
+library(xgboost)
+
+
+df_clean2 <- df_clean2 %>%
+  filter(!is.na(click_black_buy)) %>%  # delete NA
+  mutate(group = factor(group))        
+
+
+
+
+X <- df_clean2 %>%
+  select(-click_black_buy, -`Effective user ID`, -`Stream name`, -`Namespace ID`)
+
+
+X <- X %>%
+  mutate(across(where(is.character), as.factor))
+
+
+factor_cols <- sapply(X, is.factor)
+levels_count <- sapply(X[, factor_cols], nlevels)
+X <- X[, !(names(X) %in% names(levels_count[levels_count == 1]))]
+X <- X[, !is.na(colnames(X)) & colnames(X) != ""]
+
+X_matrix <- model.matrix(~ . - 1, data = X)
+
+y <- ifelse(df_clean2$click_black_buy > 0, 1, 0)
+
+
+stopifnot(nrow(X_matrix) == length(y))
+
+
+dtrain <- xgb.DMatrix(data = X_matrix, label = y)
+
+xgb_model <- xgboost(
+  data = dtrain,
+  objective = "binary:logistic",
+  nrounds = 50,
+  verbose = 0
+)
+
+
+importance_matrix <- xgb.importance(model = xgb_model)
+xgb.plot.importance(importance_matrix[1:min(10, nrow(importance_matrix)), ],
+                    main = "XGBoost Feature Importance (Top 10)")
+
+print(importance_matrix)
+
+```
+
+```{r}
+library(mlr3)
+library(mlr3learners)
+library(mlr3verse)
+library(iml)
+library(tidyverse)
+
+
+X_df <- df_clean %>%
+  drop_na() %>%
+  mutate(across(where(is.character), as.factor),
+         across(where(is.factor), as.numeric))  # xgboost 要求 numeric
+
+X_df$clicked_buy <- as.factor(ifelse(X_df$click_black_buy > 0, 1, 0))
+X_df$click_black_buy <- NULL  # 可选
+
+names(X_df) <- make.names(names(X_df))
+
+
+task <- TaskClassif$new(id = "click_test", backend = X_df, target = "clicked_buy")
+learner <- lrn("classif.xgboost", predict_type = "prob")
+learner$train(task)
+
+
+predictor <- Predictor$new(learner, data = X_df[, setdiff(names(X_df), "clicked_buy")], y = X_df$clicked_buy)
+
+
+pdp1 <- Partial$new(predictor, feature = "click_number", grid.size = 10)
+plot(pdp1) + ggtitle("PDP for click_number")
+
+
+pdp2 <- Partial$new(predictor, feature = c("click_number", "group"), grid.size = 10)
+plot(pdp2) + ggtitle("2D PDP for click_number vs group")
+
+
+
+
+
+```
+
+```{r}
+library(mlr3)
+library(mlr3learners)
+library(mlr3verse)
+library(iml)
+library(tidyverse)
+
+
+X_df <- df_clean %>%
+  drop_na() %>%
+  mutate(
+    across(where(is.character), as.factor),
+    across(where(is.factor), as.numeric)  # xgboost 要求 numeric
+  )
+
+
+X_df$clicked_buy <- as.factor(ifelse(X_df$click_black_buy > 0, 1, 0))
+X_df$click_black_buy <- NULL  # 可选：移除旧的目标列
+
+
+names(X_df) <- make.names(names(X_df))
+
+
+task <- TaskClassif$new(id = "click_test", backend = X_df, target = "clicked_buy")
+learner <- lrn("classif.xgboost", predict_type = "prob")
+learner_trained <- learner$train(task)  # ✅ 用训练后的 learner
+
+
+predictor <- Predictor$new(
+  model = learner_trained,
+  data = X_df[, setdiff(names(X_df), "clicked_buy")],
+  y = X_df$clicked_buy
+)
+
+
+shap <- Shapley$new(predictor, x.interest = X_df[1, setdiff(names(X_df), "clicked_buy")])
+plot(shap) + ggtitle("SHAP Explanation for One Observation")
+
+
+feature_imp <- FeatureImp$new(predictor, loss = "ce")
+plot(feature_imp) + ggtitle("SHAP-like Global Importance (FeatureImp)")
+
+
+```
+
+```{r}
+library(iml)
+library(ggplot2)
+library(tibble)
+library(dplyr)
+
+
+feature_imp <- FeatureImp$new(predictor, loss = "ce")  # cross entropy
+
+
+imp_df <- feature_imp$results %>%
+  as_tibble() %>%
+  arrange(desc(importance))  # 从大到小排序
+
+
+ggplot(imp_df, aes(x = reorder(feature, importance), y = importance)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  coord_flip() +
+  labs(
+    title = "SHAP-like Global Feature Importance",
+    x = "Feature",
+    y = "Mean |SHAP value| (approximate)"
+  ) +
+  theme_minimal()
+
+```
+
