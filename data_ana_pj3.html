@@ -139,282 +139,324 @@ The following object is masked from 'package:purrr':
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"C:/Users/ASUS/Desktop/Spring 2025/5243/PJ3/Final CLeaned Dataset2.csv"</span>,<span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"C:/Users/ASUS/Desktop/Spring 2025/5243/PJ3/Final CLeaned Dataset2NewExtra.csv"</span>,<span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>New names:
 • `` -&gt; `...1`</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)[<span class="fu">ncol</span>(df)] <span class="ot">&lt;-</span> <span class="st">"group"</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">click_number =</span> <span class="st">`</span><span class="at">Event count</span><span class="st">`</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#df_clean &lt;- df_clean %&gt;%</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#mutate(click_rate = ifelse(group == 1,</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                             <span class="co">#click_number / 47,</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>                             <span class="co">#click_number / 41))</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>df_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 90 × 12
-    ...1 `Effective user ID` `Stream name` `Namespace ID` `Event count` Sessions
-   &lt;dbl&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;                  &lt;dbl&gt;    &lt;dbl&gt;
- 1     0                 NA  &lt;NA&gt;          &lt;NA&gt;                     474       55
- 2     1          362654813. Super Graphi… ANONYMOUS                180        5
- 3     2         2014208042. Super Graphi… ANONYMOUS                 28        2
- 4     3          963911995. Super Graphi… ANONYMOUS                 23        1
- 5     4         1870437708. Super Graphi… ANONYMOUS                 18        2
- 6     5          761047948. Super Graphi… ANONYMOUS                 13        2
- 7     6          315123207. Super Graphi… ANONYMOUS                 12        1
- 8     7         1312120391. Super Graphi… ANONYMOUS                 10        1
- 9     8         2118688513. Super Graphi… ANONYMOUS                 10        1
-10     9          377635215. Super Graphi… ANONYMOUS                 10        1
-# ℹ 80 more rows
-# ℹ 6 more variables: `Purchase revenue` &lt;dbl&gt;, Transactions &lt;dbl&gt;,
-#   `Key events` &lt;dbl&gt;, `Unnamed: 8` &lt;chr&gt;, group &lt;dbl&gt;, click_number &lt;dbl&gt;</code></pre>
+<pre><code> [1] "...1"                     "Effective user ID"       
+ [3] "Stream name"              "Namespace ID"            
+ [5] "Event count"              "Sessions"                
+ [7] "User engagement"          "Views per session"       
+ [9] "Views"                    "Exits"                   
+[11] "Average session duration" "Engagement rate"         
+[13] "Engaged sessions"         "Entrances"               
+[15] "Unnamed: 13"              "group"                   </code></pre>
 </div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)  </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">click_black_buy =</span> <span class="dv">0</span>)</span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">click_number =</span> <span class="st">`</span><span class="at">Event count</span><span class="st">`</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">indexing =</span> <span class="st">`</span><span class="at">...1</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">indexing2 =</span> <span class="st">`</span><span class="at">Unnamed: 13</span><span class="st">`</span>)</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>group1_ids <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(...<span class="dv">1</span>)  <span class="co"># 用户唯一标识符</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>chosen1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(group1_ids, <span class="dv">6</span>)</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>clicks1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">14</span>, <span class="dv">6</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (<span class="fu">sum</span>(clicks1) <span class="sc">!=</span> <span class="dv">14</span>) {</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  clicks1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">14</span>, <span class="dv">6</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(chosen1)) {</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  df_clean<span class="sc">$</span>click_black_buy[df_clean<span class="sc">$</span>...<span class="dv">1</span> <span class="sc">==</span> chosen1[i]] <span class="ot">&lt;-</span> clicks1[i]</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>group2_ids <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(...<span class="dv">1</span>)</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>chosen2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(group2_ids, <span class="dv">5</span>)</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>clicks2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (<span class="fu">sum</span>(clicks2) <span class="sc">!=</span> <span class="dv">10</span>) {</span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  clicks2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(chosen2)) {</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>  df_clean<span class="sc">$</span>click_black_buy[df_clean<span class="sc">$</span>...<span class="dv">1</span> <span class="sc">==</span> chosen2[i]] <span class="ot">&lt;-</span> clicks2[i]</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>df_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Effective user ID</span><span class="st">`</span>)) <span class="sc">|&gt;</span>  </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="st">`</span><span class="at">indexing</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="st">`</span><span class="at">indexing2</span><span class="st">`</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>df_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 90 × 13
-    ...1 `Effective user ID` `Stream name` `Namespace ID` `Event count` Sessions
-   &lt;dbl&gt;               &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;                  &lt;dbl&gt;    &lt;dbl&gt;
- 1     0                 NA  &lt;NA&gt;          &lt;NA&gt;                     474       55
- 2     1          362654813. Super Graphi… ANONYMOUS                180        5
- 3     2         2014208042. Super Graphi… ANONYMOUS                 28        2
- 4     3          963911995. Super Graphi… ANONYMOUS                 23        1
- 5     4         1870437708. Super Graphi… ANONYMOUS                 18        2
- 6     5          761047948. Super Graphi… ANONYMOUS                 13        2
- 7     6          315123207. Super Graphi… ANONYMOUS                 12        1
- 8     7         1312120391. Super Graphi… ANONYMOUS                 10        1
- 9     8         2118688513. Super Graphi… ANONYMOUS                 10        1
-10     9          377635215. Super Graphi… ANONYMOUS                 10        1
-# ℹ 80 more rows
-# ℹ 7 more variables: `Purchase revenue` &lt;dbl&gt;, Transactions &lt;dbl&gt;,
-#   `Key events` &lt;dbl&gt;, `Unnamed: 8` &lt;chr&gt;, group &lt;dbl&gt;, click_number &lt;dbl&gt;,
-#   click_black_buy &lt;dbl&gt;</code></pre>
+<pre><code># A tibble: 126 × 14
+   `Effective user ID` `Stream name`       `Namespace ID` click_number Sessions
+                 &lt;dbl&gt; &lt;chr&gt;               &lt;chr&gt;                 &lt;dbl&gt;    &lt;dbl&gt;
+ 1          362654813. Super Graphic Store ANONYMOUS               184        6
+ 2          963911995. Super Graphic Store ANONYMOUS                48        2
+ 3         2014208042. Super Graphic Store ANONYMOUS                39        4
+ 4         1743914096. Super Graphic Store ANONYMOUS                34        1
+ 5         1870437708. Super Graphic Store ANONYMOUS                18        2
+ 6          493883432. Super Graphic Store ANONYMOUS                18        2
+ 7          761047948. Super Graphic Store ANONYMOUS                13        2
+ 8          315123207. Super Graphic Store ANONYMOUS                12        1
+ 9          314826333. Super Graphic Store ANONYMOUS                11        1
+10          834410559. Super Graphic Store ANONYMOUS                11        2
+# ℹ 116 more rows
+# ℹ 9 more variables: `User engagement` &lt;dbl&gt;, `Views per session` &lt;dbl&gt;,
+#   Views &lt;dbl&gt;, Exits &lt;dbl&gt;, `Average session duration` &lt;dbl&gt;,
+#   `Engagement rate` &lt;dbl&gt;, `Engaged sessions` &lt;dbl&gt;, Entrances &lt;dbl&gt;,
+#   group &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">click_black_buy =</span> <span class="dv">0</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># group 1</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>group1_ids <span class="ot">&lt;-</span> <span class="fu">which</span>(df_clean<span class="sc">$</span>group <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>chosen1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(group1_ids, <span class="dv">6</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>clicks1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">14</span>, <span class="dv">6</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (<span class="fu">sum</span>(clicks1) <span class="sc">!=</span> <span class="dv">14</span>) {</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  clicks1 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">14</span>, <span class="dv">6</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(chosen1)) {</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  df_clean<span class="sc">$</span>click_black_buy[chosen1[i]] <span class="ot">&lt;-</span> clicks1[i]</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co"># group 2</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>group2_ids <span class="ot">&lt;-</span> <span class="fu">which</span>(df_clean<span class="sc">$</span>group <span class="sc">==</span> <span class="dv">2</span>)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>chosen2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(group2_ids, <span class="dv">5</span>)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>clicks2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (<span class="fu">sum</span>(clicks2) <span class="sc">!=</span> <span class="dv">10</span>) {</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  clicks2 <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(chosen2)) {</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>  df_clean<span class="sc">$</span>click_black_buy[chosen2[i]] <span class="ot">&lt;-</span> clicks2[i]</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df_clean <span class="sc">|&gt;</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">factor</span>(group, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>)))</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "...1"              "Effective user ID" "Stream name"      
- [4] "Namespace ID"      "Event count"       "Sessions"         
- [7] "Purchase revenue"  "Transactions"      "Key events"       
-[10] "Unnamed: 8"        "group"             "click_number"     
-[13] "click_black_buy"  </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_clean)[<span class="fu">grepl</span>(<span class="st">"Unnamed"</span>, <span class="fu">names</span>(df_clean))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Unnamed: 8"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dput</span>(<span class="fu">names</span>(df_clean))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>c("...1", "Effective user ID", "Stream name", "Namespace ID", 
-"Event count", "Sessions", "Purchase revenue", "Transactions", 
-"Key events", "Unnamed: 8", "group", "click_number", "click_black_buy"
-)</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>df_clean <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">index =</span> <span class="st">`</span><span class="at">...1</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">matches</span>(<span class="st">"^Unnamed"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_if</span>(<span class="cf">function</span>(col) <span class="sc">!</span><span class="fu">all</span>(<span class="fu">is.na</span>(col) <span class="sc">|</span> col <span class="sc">==</span> <span class="dv">0</span>)) <span class="sc">%&gt;%</span>  <span class="co"># 更老的写法</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">factor</span>(group, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>)))</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "index"             "Effective user ID" "Stream name"      
-[4] "Namespace ID"      "Event count"       "Sessions"         
-[7] "group"             "click_number"      "click_black_buy"  </code></pre>
+<pre><code> [1] "Effective user ID"        "Stream name"             
+ [3] "Namespace ID"             "click_number"            
+ [5] "Sessions"                 "User engagement"         
+ [7] "Views per session"        "Views"                   
+ [9] "Exits"                    "Average session duration"
+[11] "Engagement rate"          "Engaged sessions"        
+[13] "Entrances"                "group"                   
+[15] "click_black_buy"         </code></pre>
 </div>
 </div>
 <p>##Basic statistic info</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Basic statistic info</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span> </span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span> </span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_clicks =</span> <span class="fu">mean</span>(click_black_buy)) <span class="sc">|&gt;</span> </span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Basic statistic info</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span> </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_clicks =</span> <span class="fu">mean</span>(click_black_buy)) <span class="sc">|&gt;</span> </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   group avg_clicks
   &lt;fct&gt;      &lt;dbl&gt;
-1 A          0.292
-2 B          0.238</code></pre>
+1 A          0.203
+2 B          0.175</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_clean, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(group), <span class="at">y =</span> click_black_buy, <span class="at">fill =</span> <span class="fu">factor</span>(group))) <span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"bar"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">width =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_se, <span class="at">geom =</span> <span class="st">"errorbar"</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Average Number of Red Button Clicks by Group"</span>,</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Click Count (Red Button)"</span>,</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Group"</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_clean, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(group), <span class="at">y =</span> click_black_buy, <span class="at">fill =</span> <span class="fu">factor</span>(group))) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"bar"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">width =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_se, <span class="at">geom =</span> <span class="st">"errorbar"</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Average Number of Red Button Clicks by Group"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Click Count (Red Button)"</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Group"</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="data_ana_pj3_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="data_ana_pj3_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>##t-test</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">## t-test for clicked_buy between groups</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>click_A <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="st">"A"</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(click_black_buy)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>click_B <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="st">"B"</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(click_black_buy)</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>t_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(click_A, click_B, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## t-test for clicked_buy between groups</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>click_A <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="st">"A"</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(click_black_buy)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>click_B <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="st">"B"</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(click_black_buy)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>t_result <span class="ot">&lt;-</span> <span class="fu">t.test</span>(click_A, click_B, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Welch Two Sample t-test
 
 data:  click_A and click_B
-t = 0.28653, df = 86.129, p-value = 0.7752
+t = 0.21317, df = 123.5, p-value = 0.8315
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -0.3180937  0.4252366
+ -0.2275161  0.2824360
 sample estimates:
 mean of x mean of y 
-0.2916667 0.2380952 </code></pre>
+0.2028986 0.1754386 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (t_result<span class="sc">$</span>p.value <span class="sc">&lt;</span> alpha) {</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Significant difference in black shirt click count between group 1 and group 2."</span>)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"No significant difference in black shirt click count between group 1 and group 2."</span>)</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (t_result<span class="sc">$</span>p.value <span class="sc">&lt;</span> alpha) {</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Significant difference in black shirt click count between group 1 and group 2."</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"No significant difference in black shirt click count between group 1 and group 2."</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "No significant difference in black shirt click count between group 1 and group 2."</code></pre>
 </div>
 </div>
 <p>##chi-square</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df_clean_chi <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clicked_black =</span> <span class="fu">ifelse</span>(click_black_buy <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>click_table <span class="ot">&lt;-</span> <span class="fu">table</span>(df_clean_chi<span class="sc">$</span>group, df_clean_chi<span class="sc">$</span>clicked_black)</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>chi_result <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(click_table)</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(chi_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_clean_chi <span class="ot">&lt;-</span> df_clean <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clicked_black =</span> <span class="fu">ifelse</span>(click_black_buy <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>click_table <span class="ot">&lt;-</span> <span class="fu">table</span>(df_clean_chi<span class="sc">$</span>group, df_clean_chi<span class="sc">$</span>clicked_black)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>chi_result <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(click_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in chisq.test(click_table): Chi-squared近似算法有可能不准</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(chi_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's Chi-squared test with Yates' continuity correction
 
 data:  click_table
-X-squared = 2.8814e-31, df = 1, p-value = 1</code></pre>
+X-squared = 1.1076e-31, df = 1, p-value = 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (chi_result<span class="sc">$</span>p.value <span class="sc">&lt;</span> alpha) {</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Significant difference in black shirt click-through between group 1 and group 2."</span>)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"No significant difference in black shirt click-through between group 1 and group 2."</span>)</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (chi_result<span class="sc">$</span>p.value <span class="sc">&lt;</span> alpha) {</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"Significant difference in black shirt click-through between group 1 and group 2."</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"No significant difference in black shirt click-through between group 1 and group 2."</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "No significant difference in black shirt click-through between group 1 and group 2."</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df_clean_chi <span class="ot">&lt;-</span> df_clean_chi <span class="sc">%&gt;%</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>clicked_black)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df_clean_chi <span class="ot">&lt;-</span> df_clean_chi <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>clicked_black)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>##XGBoost</p>
+<p>##Prop-test</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xgboost)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>df_clean2 <span class="ot">&lt;-</span> df_clean</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xgboost)</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>df_clean2 <span class="ot">&lt;-</span> df_clean2 <span class="sc">%&gt;%</span></span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(click_black_buy)) <span class="sc">%&gt;%</span>  <span class="co"># delete NA</span></span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">factor</span>(group))        </span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> df_clean2 <span class="sc">%&gt;%</span></span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>click_black_buy, <span class="sc">-</span><span class="st">`</span><span class="at">Effective user ID</span><span class="st">`</span>, <span class="sc">-</span><span class="st">`</span><span class="at">Stream name</span><span class="st">`</span>, <span class="sc">-</span><span class="st">`</span><span class="at">Namespace ID</span><span class="st">`</span>)</span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span></span>
-<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), as.factor))</span>
-<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>factor_cols <span class="ot">&lt;-</span> <span class="fu">sapply</span>(X, is.factor)</span>
-<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>levels_count <span class="ot">&lt;-</span> <span class="fu">sapply</span>(X[, factor_cols], nlevels)</span>
-<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> X[, <span class="sc">!</span>(<span class="fu">names</span>(X) <span class="sc">%in%</span> <span class="fu">names</span>(levels_count[levels_count <span class="sc">==</span> <span class="dv">1</span>]))]</span>
-<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> X[, <span class="sc">!</span><span class="fu">is.na</span>(<span class="fu">colnames</span>(X)) <span class="sc">&amp;</span> <span class="fu">colnames</span>(X) <span class="sc">!=</span> <span class="st">""</span>]</span>
-<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>X_matrix <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> . <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> X)</span>
-<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df_clean2<span class="sc">$</span>click_black_buy <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="fu">nrow</span>(X_matrix) <span class="sc">==</span> <span class="fu">length</span>(y))</span>
-<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a>dtrain <span class="ot">&lt;-</span> <span class="fu">xgb.DMatrix</span>(<span class="at">data =</span> X_matrix, <span class="at">label =</span> y)</span>
-<span id="cb33-40"><a href="#cb33-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-41"><a href="#cb33-41" aria-hidden="true" tabindex="-1"></a>xgb_model <span class="ot">&lt;-</span> <span class="fu">xgboost</span>(</span>
-<span id="cb33-42"><a href="#cb33-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dtrain,</span>
-<span id="cb33-43"><a href="#cb33-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">objective =</span> <span class="st">"binary:logistic"</span>,</span>
-<span id="cb33-44"><a href="#cb33-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrounds =</span> <span class="dv">50</span>,</span>
-<span id="cb33-45"><a href="#cb33-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="dv">0</span></span>
-<span id="cb33-46"><a href="#cb33-46" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb33-47"><a href="#cb33-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-48"><a href="#cb33-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-49"><a href="#cb33-49" aria-hidden="true" tabindex="-1"></a>importance_matrix <span class="ot">&lt;-</span> <span class="fu">xgb.importance</span>(<span class="at">model =</span> xgb_model)</span>
-<span id="cb33-50"><a href="#cb33-50" aria-hidden="true" tabindex="-1"></a><span class="fu">xgb.plot.importance</span>(importance_matrix[<span class="dv">1</span><span class="sc">:</span><span class="fu">min</span>(<span class="dv">10</span>, <span class="fu">nrow</span>(importance_matrix)), ],</span>
-<span id="cb33-51"><a href="#cb33-51" aria-hidden="true" tabindex="-1"></a>                    <span class="at">main =</span> <span class="st">"XGBoost Feature Importance (Top 10)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>df_clean<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">as.character</span>(df_clean<span class="sc">$</span>group)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>ab_table <span class="ot">&lt;-</span> df_clean <span class="sc">|&gt;</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">total =</span> <span class="fu">n</span>(),</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">click_buy =</span> <span class="fu">sum</span>(click_black_buy <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>ab_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  group total click_buy
+  &lt;chr&gt; &lt;int&gt;     &lt;int&gt;
+1 A        69         6
+2 B        57         5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>success <span class="ot">&lt;-</span> ab_table<span class="sc">$</span>click_buy</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> ab_table<span class="sc">$</span>total</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(success, total,<span class="at">correct =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in prop.test(success, total, correct = FALSE):
+Chi-squared近似算法有可能不准</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    2-sample test for equality of proportions without continuity correction
+
+data:  success out of total
+X-squared = 0.00022793, df = 1, p-value = 0.988
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ -0.09982522  0.09829967
+sample estimates:
+    prop 1     prop 2 
+0.08695652 0.08771930 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>df_clean <span class="sc">|&gt;</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">clicked =</span> click_black_buy <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">click_rate =</span> <span class="fu">mean</span>(clicked)) <span class="sc">|&gt;</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> click_rate, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Click Rate Comparison by Group"</span>, <span class="at">y =</span> <span class="st">"Click Rate"</span>) <span class="sc">+</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data_ana_pj3_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>##Fisher test</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>click_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">69</span> <span class="sc">-</span> <span class="dv">6</span>,</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>                         <span class="dv">5</span>, <span class="dv">57</span> <span class="sc">-</span> <span class="dv">5</span>),</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(click_matrix) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Group A"</span>, <span class="st">"Group B"</span>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(click_matrix) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Clicked"</span>, <span class="st">"Not_Clicked"</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="co"># show matrix</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>click_matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Clicked Not_Clicked
+Group A       6          63
+Group B       5          52</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fisher test</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>fisher_result <span class="ot">&lt;-</span> <span class="fu">fisher.test</span>(click_matrix)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>fisher_result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Fisher's Exact Test for Count Data
+
+data:  click_matrix
+p-value = 1
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+ 0.236757 4.352027
+sample estimates:
+odds ratio 
+ 0.9905503 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>ab_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>),</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">clicked =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">5</span>),</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">not_clicked =</span> <span class="fu">c</span>(<span class="dv">69</span> <span class="sc">-</span> <span class="dv">6</span>, <span class="dv">57</span> <span class="sc">-</span> <span class="dv">5</span>)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>ab_long <span class="ot">&lt;-</span> ab_table <span class="sc">%&gt;%</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(clicked, not_clicked),</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"click_status"</span>,</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"count"</span>)</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ab_long, <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> count, <span class="at">fill =</span> click_status)) <span class="sc">+</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Click vs No Click Count by Group"</span>,</span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Group"</span>,</span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Users"</span>,</span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Click Status"</span></span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"salmon"</span>),</span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>                    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Clicked"</span>, <span class="st">"Not Clicked"</span>)) <span class="sc">+</span></span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -422,48 +464,50 @@ X-squared = 2.8814e-31, df = 1, p-value = 1</code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(importance_matrix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>         Feature      Gain     Cover Frequency
-          &lt;char&gt;     &lt;num&gt;     &lt;num&gt;     &lt;num&gt;
-1:         index 0.8515069 0.7087335 0.7828054
-2: `Event count` 0.1484931 0.2912665 0.2171946</code></pre>
 </div>
-</div>
+<p>##XGBoost</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mlr3)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mlr3learners)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mlr3verse)</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iml)</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>X_df <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span></span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), as.factor),</span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="fu">where</span>(is.factor), as.numeric))  <span class="co"># xgboost 要求 numeric</span></span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>X_df<span class="sc">$</span>clicked_buy <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">ifelse</span>(X_df<span class="sc">$</span>click_black_buy <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>X_df<span class="sc">$</span>click_black_buy <span class="ot">&lt;-</span> <span class="cn">NULL</span>  <span class="co"># 可选</span></span>
-<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(X_df) <span class="ot">&lt;-</span> <span class="fu">make.names</span>(<span class="fu">names</span>(X_df))</span>
-<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>task <span class="ot">&lt;-</span> TaskClassif<span class="sc">$</span><span class="fu">new</span>(<span class="at">id =</span> <span class="st">"click_test"</span>, <span class="at">backend =</span> X_df, <span class="at">target =</span> <span class="st">"clicked_buy"</span>)</span>
-<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>learner <span class="ot">&lt;-</span> <span class="fu">lrn</span>(<span class="st">"classif.xgboost"</span>, <span class="at">predict_type =</span> <span class="st">"prob"</span>)</span>
-<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>learner<span class="sc">$</span><span class="fu">train</span>(task)</span>
-<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a>predictor <span class="ot">&lt;-</span> Predictor<span class="sc">$</span><span class="fu">new</span>(learner, <span class="at">data =</span> X_df[, <span class="fu">setdiff</span>(<span class="fu">names</span>(X_df), <span class="st">"clicked_buy"</span>)], <span class="at">y =</span> X_df<span class="sc">$</span>clicked_buy)</span>
-<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>pdp1 <span class="ot">&lt;-</span> Partial<span class="sc">$</span><span class="fu">new</span>(predictor, <span class="at">feature =</span> <span class="st">"click_number"</span>, <span class="at">grid.size =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in initialize(...): Partial不再有用。
-请用'FeatureEffect'。
-见help("Deprecated")</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pdp1) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"PDP for click_number"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xgboost)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>cols_to_keep <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"click_black_buy"</span>, <span class="st">"click_number"</span>, <span class="st">"Sessions"</span>, <span class="st">"User engagement"</span>,</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Views per session"</span>, <span class="st">"Views"</span>, <span class="st">"Exits"</span>, <span class="st">"Average session duration"</span>,</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Engagement rate"</span>, <span class="st">"Engaged sessions"</span>, <span class="st">"Entrances"</span>, <span class="st">"group"</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>df_clean2 <span class="ot">&lt;-</span> df_clean <span class="sc">|&gt;</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(click_black_buy)) <span class="sc">|&gt;</span></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">all_of</span>(cols_to_keep)) <span class="sc">|&gt;</span></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">factor</span>(group)) </span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> df_clean2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>click_black_buy)</span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df_clean2<span class="sc">$</span>click_black_buy <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a><span class="co">#sapply(X, class)</span></span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> X <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.factor), as.factor))</span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>X_matrix <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(<span class="sc">~</span> . <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> X)</span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>dtrain <span class="ot">&lt;-</span> <span class="fu">xgb.DMatrix</span>(<span class="at">data =</span> X_matrix, <span class="at">label =</span> y)</span>
+<span id="cb40-28"><a href="#cb40-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-29"><a href="#cb40-29" aria-hidden="true" tabindex="-1"></a>xgb_model <span class="ot">&lt;-</span> <span class="fu">xgboost</span>(</span>
+<span id="cb40-30"><a href="#cb40-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> dtrain,</span>
+<span id="cb40-31"><a href="#cb40-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">objective =</span> <span class="st">"binary:logistic"</span>,</span>
+<span id="cb40-32"><a href="#cb40-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrounds =</span> <span class="dv">50</span>,</span>
+<span id="cb40-33"><a href="#cb40-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="dv">0</span></span>
+<span id="cb40-34"><a href="#cb40-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb40-35"><a href="#cb40-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-36"><a href="#cb40-36" aria-hidden="true" tabindex="-1"></a>importance_matrix <span class="ot">&lt;-</span> <span class="fu">xgb.importance</span>(<span class="at">model =</span> xgb_model)</span>
+<span id="cb40-37"><a href="#cb40-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-38"><a href="#cb40-38" aria-hidden="true" tabindex="-1"></a><span class="fu">xgb.plot.importance</span>(</span>
+<span id="cb40-39"><a href="#cb40-39" aria-hidden="true" tabindex="-1"></a>  importance_matrix[<span class="dv">1</span><span class="sc">:</span><span class="fu">min</span>(<span class="dv">10</span>, <span class="fu">nrow</span>(importance_matrix)), ],</span>
+<span id="cb40-40"><a href="#cb40-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"XGBoost Feature Importance (Top 10)"</span></span>
+<span id="cb40-41"><a href="#cb40-41" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -471,58 +515,69 @@ X-squared = 2.8814e-31, df = 1, p-value = 1</code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>pdp2 <span class="ot">&lt;-</span> Partial<span class="sc">$</span><span class="fu">new</span>(predictor, <span class="at">feature =</span> <span class="fu">c</span>(<span class="st">"click_number"</span>, <span class="st">"group"</span>), <span class="at">grid.size =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(importance_matrix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      Feature        Gain      Cover  Frequency
+                       &lt;char&gt;       &lt;num&gt;      &lt;num&gt;      &lt;num&gt;
+1: `Average session duration` 0.405151358 0.45901697 0.54672897
+2:          `User engagement` 0.261187750 0.27977041 0.19158879
+3:               click_number 0.112717430 0.08420803 0.07476636
+4:                   Sessions 0.092698860 0.04208419 0.03271028
+5:                     groupA 0.085936498 0.04216476 0.07943925
+6:                      Views 0.034447854 0.07889873 0.06074766
+7:          `Engagement rate` 0.007860251 0.01385691 0.01401869</code></pre>
+</div>
+</div>
+<p>##PDP</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mlr3)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mlr3learners)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mlr3verse)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iml)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co"># numeric column</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>vars_to_use <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"click_number"</span>, <span class="st">"Sessions"</span>, <span class="st">"User engagement"</span>, <span class="st">"Views per session"</span>, </span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Views"</span>, <span class="st">"Exits"</span>, <span class="st">"Average session duration"</span>, <span class="st">"Engagement rate"</span>,</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Engaged sessions"</span>, <span class="st">"Entrances"</span>, <span class="st">"group"</span>, <span class="st">"click_black_buy"</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>X_df <span class="ot">&lt;-</span> df_clean <span class="sc">|&gt;</span></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">all_of</span>(vars_to_use)) <span class="sc">|&gt;</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.character), as.factor),</span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.factor), as.numeric)  </span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a>X_df<span class="sc">$</span>clicked_buy <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">ifelse</span>(X_df<span class="sc">$</span>click_black_buy <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a>X_df<span class="sc">$</span>click_black_buy <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-26"><a href="#cb43-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-27"><a href="#cb43-27" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(X_df) <span class="ot">&lt;-</span> <span class="fu">make.names</span>(<span class="fu">names</span>(X_df))</span>
+<span id="cb43-28"><a href="#cb43-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-29"><a href="#cb43-29" aria-hidden="true" tabindex="-1"></a><span class="co">#task and learner</span></span>
+<span id="cb43-30"><a href="#cb43-30" aria-hidden="true" tabindex="-1"></a>task <span class="ot">&lt;-</span> TaskClassif<span class="sc">$</span><span class="fu">new</span>(<span class="at">id =</span> <span class="st">"click_test"</span>, <span class="at">backend =</span> X_df, <span class="at">target =</span> <span class="st">"clicked_buy"</span>)</span>
+<span id="cb43-31"><a href="#cb43-31" aria-hidden="true" tabindex="-1"></a>learner <span class="ot">&lt;-</span> <span class="fu">lrn</span>(<span class="st">"classif.xgboost"</span>, <span class="at">predict_type =</span> <span class="st">"prob"</span>)</span>
+<span id="cb43-32"><a href="#cb43-32" aria-hidden="true" tabindex="-1"></a>learner<span class="sc">$</span><span class="fu">train</span>(task)</span>
+<span id="cb43-33"><a href="#cb43-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-34"><a href="#cb43-34" aria-hidden="true" tabindex="-1"></a><span class="co">#IML predictor</span></span>
+<span id="cb43-35"><a href="#cb43-35" aria-hidden="true" tabindex="-1"></a>predictor <span class="ot">&lt;-</span> Predictor<span class="sc">$</span><span class="fu">new</span>(</span>
+<span id="cb43-36"><a href="#cb43-36" aria-hidden="true" tabindex="-1"></a>  learner,</span>
+<span id="cb43-37"><a href="#cb43-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> X_df[, <span class="fu">setdiff</span>(<span class="fu">names</span>(X_df), <span class="st">"clicked_buy"</span>)],</span>
+<span id="cb43-38"><a href="#cb43-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> X_df<span class="sc">$</span>clicked_buy</span>
+<span id="cb43-39"><a href="#cb43-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb43-40"><a href="#cb43-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-41"><a href="#cb43-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-42"><a href="#cb43-42" aria-hidden="true" tabindex="-1"></a>pdp1 <span class="ot">&lt;-</span> Partial<span class="sc">$</span><span class="fu">new</span>(predictor, <span class="at">feature =</span> <span class="st">"click_number"</span>, <span class="at">grid.size =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in initialize(...): Partial不再有用。
 请用'FeatureEffect'。
 见help("Deprecated")</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pdp2) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"2D PDP for click_number vs group"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="data_ana_pj3_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mlr3)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mlr3learners)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mlr3verse)</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iml)</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>X_df <span class="ot">&lt;-</span> df_clean <span class="sc">%&gt;%</span></span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.character), as.factor),</span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.factor), as.numeric)  <span class="co"># xgboost 要求 numeric</span></span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>X_df<span class="sc">$</span>clicked_buy <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">ifelse</span>(X_df<span class="sc">$</span>click_black_buy <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
-<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>X_df<span class="sc">$</span>click_black_buy <span class="ot">&lt;-</span> <span class="cn">NULL</span>  <span class="co"># 可选：移除旧的目标列</span></span>
-<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(X_df) <span class="ot">&lt;-</span> <span class="fu">make.names</span>(<span class="fu">names</span>(X_df))</span>
-<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>task <span class="ot">&lt;-</span> TaskClassif<span class="sc">$</span><span class="fu">new</span>(<span class="at">id =</span> <span class="st">"click_test"</span>, <span class="at">backend =</span> X_df, <span class="at">target =</span> <span class="st">"clicked_buy"</span>)</span>
-<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>learner <span class="ot">&lt;-</span> <span class="fu">lrn</span>(<span class="st">"classif.xgboost"</span>, <span class="at">predict_type =</span> <span class="st">"prob"</span>)</span>
-<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a>learner_trained <span class="ot">&lt;-</span> learner<span class="sc">$</span><span class="fu">train</span>(task)  <span class="co"># ✅ 用训练后的 learner</span></span>
-<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a>predictor <span class="ot">&lt;-</span> Predictor<span class="sc">$</span><span class="fu">new</span>(</span>
-<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> learner_trained,</span>
-<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> X_df[, <span class="fu">setdiff</span>(<span class="fu">names</span>(X_df), <span class="st">"clicked_buy"</span>)],</span>
-<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> X_df<span class="sc">$</span>clicked_buy</span>
-<span id="cb42-32"><a href="#cb42-32" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb42-33"><a href="#cb42-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-34"><a href="#cb42-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-35"><a href="#cb42-35" aria-hidden="true" tabindex="-1"></a>shap <span class="ot">&lt;-</span> Shapley<span class="sc">$</span><span class="fu">new</span>(predictor, <span class="at">x.interest =</span> X_df[<span class="dv">1</span>, <span class="fu">setdiff</span>(<span class="fu">names</span>(X_df), <span class="st">"clicked_buy"</span>)])</span>
-<span id="cb42-36"><a href="#cb42-36" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(shap) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"SHAP Explanation for One Observation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pdp1) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"PDP for click_number"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -530,12 +585,13 @@ X-squared = 2.8814e-31, df = 1, p-value = 1</code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>feature_imp <span class="ot">&lt;-</span> FeatureImp<span class="sc">$</span><span class="fu">new</span>(predictor, <span class="at">loss =</span> <span class="st">"ce"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>pdp2 <span class="ot">&lt;-</span> Partial<span class="sc">$</span><span class="fu">new</span>(predictor, <span class="at">feature =</span> <span class="fu">c</span>(<span class="st">"click_number"</span>, <span class="st">"group"</span>), <span class="at">grid.size =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in initialize(...): Model error is 0, switching from compare='ratio' to
-compare='difference'</code></pre>
+<pre><code>Warning in initialize(...): Partial不再有用。
+请用'FeatureEffect'。
+见help("Deprecated")</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(feature_imp) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"SHAP-like Global Importance (FeatureImp)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pdp2) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"2D PDP for click_number vs group"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -544,36 +600,151 @@ compare='difference'</code></pre>
 </div>
 </div>
 </div>
+<p>##shap</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iml)</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>feature_imp <span class="ot">&lt;-</span> FeatureImp<span class="sc">$</span><span class="fu">new</span>(predictor, <span class="at">loss =</span> <span class="st">"ce"</span>)  <span class="co"># cross entropy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in initialize(...): Model error is 0, switching from compare='ratio' to
-compare='difference'</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>imp_df <span class="ot">&lt;-</span> feature_imp<span class="sc">$</span>results <span class="sc">%&gt;%</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(importance))  <span class="co"># 从大到小排序</span></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(imp_df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(feature, importance), <span class="at">y =</span> importance)) <span class="sc">+</span></span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"SHAP-like Global Feature Importance"</span>,</span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Feature"</span>,</span>
-<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Mean |SHAP value| (approximate)"</span></span>
-<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mlr3)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mlr3learners)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mlr3verse)</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iml)</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>vars_to_use <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"click_number"</span>, <span class="st">"Sessions"</span>, <span class="st">"User engagement"</span>, <span class="st">"Views per session"</span>,</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Views"</span>, <span class="st">"Exits"</span>, <span class="st">"Average session duration"</span>, <span class="st">"Engagement rate"</span>,</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Engaged sessions"</span>, <span class="st">"Entrances"</span>, <span class="st">"group"</span>, <span class="st">"click_black_buy"</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>X_df <span class="ot">&lt;-</span> df_clean <span class="sc">|&gt;</span></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">all_of</span>(vars_to_use)) <span class="sc">|&gt;</span></span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.character), as.factor),</span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">where</span>(is.factor), as.numeric)  </span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a>X_df<span class="sc">$</span>clicked_buy <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(<span class="fu">ifelse</span>(X_df<span class="sc">$</span>click_black_buy <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>X_df<span class="sc">$</span>click_black_buy <span class="ot">&lt;-</span> <span class="cn">NULL</span>  </span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(X_df) <span class="ot">&lt;-</span> <span class="fu">make.names</span>(<span class="fu">names</span>(X_df))</span>
+<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a>task <span class="ot">&lt;-</span> TaskClassif<span class="sc">$</span><span class="fu">new</span>(<span class="at">id =</span> <span class="st">"click_test"</span>, <span class="at">backend =</span> X_df, <span class="at">target =</span> <span class="st">"clicked_buy"</span>)</span>
+<span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a>learner <span class="ot">&lt;-</span> <span class="fu">lrn</span>(<span class="st">"classif.xgboost"</span>, <span class="at">predict_type =</span> <span class="st">"prob"</span>)</span>
+<span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a>learner_trained <span class="ot">&lt;-</span> learner<span class="sc">$</span><span class="fu">train</span>(task)</span>
+<span id="cb49-33"><a href="#cb49-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-34"><a href="#cb49-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-35"><a href="#cb49-35" aria-hidden="true" tabindex="-1"></a>predictor <span class="ot">&lt;-</span> Predictor<span class="sc">$</span><span class="fu">new</span>(</span>
+<span id="cb49-36"><a href="#cb49-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> learner_trained,</span>
+<span id="cb49-37"><a href="#cb49-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> X_df[, <span class="fu">setdiff</span>(<span class="fu">names</span>(X_df), <span class="st">"clicked_buy"</span>)],</span>
+<span id="cb49-38"><a href="#cb49-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> X_df<span class="sc">$</span>clicked_buy</span>
+<span id="cb49-39"><a href="#cb49-39" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb49-40"><a href="#cb49-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-41"><a href="#cb49-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-42"><a href="#cb49-42" aria-hidden="true" tabindex="-1"></a>shap <span class="ot">&lt;-</span> Shapley<span class="sc">$</span><span class="fu">new</span>(</span>
+<span id="cb49-43"><a href="#cb49-43" aria-hidden="true" tabindex="-1"></a>  predictor,</span>
+<span id="cb49-44"><a href="#cb49-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">x.interest =</span> X_df[<span class="dv">1</span>, <span class="fu">setdiff</span>(<span class="fu">names</span>(X_df), <span class="st">"clicked_buy"</span>)]</span>
+<span id="cb49-45"><a href="#cb49-45" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb49-46"><a href="#cb49-46" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(shap) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"SHAP Explanation for One Observation"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="data_ana_pj3_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>feature_imp <span class="ot">&lt;-</span> FeatureImp<span class="sc">$</span><span class="fu">new</span>(predictor, <span class="at">loss =</span> <span class="st">"ce"</span>)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(feature_imp) <span class="sc">+</span> <span class="fu">ggtitle</span>(<span class="st">"SHAP-like Global Importance (FeatureImp)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data_ana_pj3_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>##shap</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iml)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>feature_imp <span class="ot">&lt;-</span> FeatureImp<span class="sc">$</span><span class="fu">new</span>(predictor, <span class="at">loss =</span> <span class="st">"ce"</span>)  <span class="co"># ce = cross entropy</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>imp_df <span class="ot">&lt;-</span> feature_imp<span class="sc">$</span>results <span class="sc">|&gt;</span></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(importance))  </span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(imp_df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(feature, importance), <span class="at">y =</span> importance)) <span class="sc">+</span></span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"SHAP-like Global Feature Importance"</span>,</span>
+<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Feature"</span>,</span>
+<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Mean |SHAP value| (approximate)"</span></span>
+<span id="cb51-22"><a href="#cb51-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb51-23"><a href="#cb51-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data_ana_pj3_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>##shap</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iml)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>X_group_A <span class="ot">&lt;-</span> X_df <span class="sc">|&gt;</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="dv">0</span>)   </span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>X_group_B <span class="ot">&lt;-</span> X_df <span class="sc">|&gt;</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="dv">1</span>)   </span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>feature_names <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(X_df), <span class="st">"clicked_buy"</span>)</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>get_shap_values <span class="ot">&lt;-</span> <span class="cf">function</span>(data_subset, label) {</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>  shap_list <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(data_subset), <span class="cf">function</span>(i) {</span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>    shap <span class="ot">&lt;-</span> Shapley<span class="sc">$</span><span class="fu">new</span>(predictor, <span class="at">x.interest =</span> data_subset[i, feature_names])</span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>    shap_df <span class="ot">&lt;-</span> shap<span class="sc">$</span>results <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">obs =</span> i, <span class="at">group =</span> label)</span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(shap_df)</span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(shap_list)</span>
+<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a>shap_A <span class="ot">&lt;-</span> <span class="fu">get_shap_values</span>(X_group_A[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, ], <span class="st">"A"</span>)  </span>
+<span id="cb52-22"><a href="#cb52-22" aria-hidden="true" tabindex="-1"></a>shap_B <span class="ot">&lt;-</span> <span class="fu">get_shap_values</span>(X_group_B[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, ], <span class="st">"B"</span>)</span>
+<span id="cb52-23"><a href="#cb52-23" aria-hidden="true" tabindex="-1"></a>shap_all <span class="ot">&lt;&lt;-</span> <span class="fu">bind_rows</span>(shap_A, shap_B)</span>
+<span id="cb52-24"><a href="#cb52-24" aria-hidden="true" tabindex="-1"></a>shap_all_clean <span class="ot">&lt;-</span> shap_all <span class="sc">|&gt;</span></span>
+<span id="cb52-25"><a href="#cb52-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(phi), <span class="sc">!</span><span class="fu">is.na</span>(feature), <span class="sc">!</span><span class="fu">is.na</span>(group)) <span class="sc">|&gt;</span></span>
+<span id="cb52-26"><a href="#cb52-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">factor</span>(group, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>)))</span>
+<span id="cb52-27"><a href="#cb52-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-28"><a href="#cb52-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-29"><a href="#cb52-29" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(shap_all_clean, <span class="fu">aes</span>(<span class="at">x =</span> group, <span class="at">y =</span> phi, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
+<span id="cb52-30"><a href="#cb52-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">trim =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb52-31"><a href="#cb52-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> feature, <span class="at">scales =</span> <span class="st">"free_y"</span>, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span>  </span>
+<span id="cb52-32"><a href="#cb52-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#F8766D"</span>, <span class="st">"#00BFC4"</span>)) <span class="sc">+</span> </span>
+<span id="cb52-33"><a href="#cb52-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"SHAP Value Distribution by Group"</span>,</span>
+<span id="cb52-34"><a href="#cb52-34" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Group"</span>,</span>
+<span id="cb52-35"><a href="#cb52-35" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"SHAP Value"</span>) <span class="sc">+</span></span>
+<span id="cb52-36"><a href="#cb52-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>) <span class="sc">+</span></span>
+<span id="cb52-37"><a href="#cb52-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb52-38"><a href="#cb52-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb52-39"><a href="#cb52-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb52-40"><a href="#cb52-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb52-41"><a href="#cb52-41" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data_ana_pj3_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
