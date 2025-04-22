@@ -1,0 +1,28 @@
+# ----------------------------------------
+# Events: Event name
+# Account: ruangkawprc
+# Property: Shiny app
+# ----------------------------------------
+# 
+# All Users
+# Start date: 20250324
+# End date: 20250420
+Event name,Event count,Total users,Event count per active user,Total revenue
+page_view,153,66,2.4285714285714284,0
+scroll,124,50,2.5833333333333335,0
+user_engagement,85,20,4.25,0
+session_start,83,66,1.3174603174603174,0
+first_visit,65,65,1.0483870967741935,0
+purchase_click,48,12,4,0
+purchase_click_plain_black_shirt_sale,17,8,2.125,0
+comment_submitted,16,5,3.2,0
+rating_given,13,6,2.1666666666666665,0
+comment_submitted_user_submitted_comment,12,7,1.7142857142857142,0
+purchase_click_graphic_shirt,11,4,2.75,0
+rating_given_4,8,6,1.3333333333333333,0
+decline_purchase_did_not_buy_anything,6,3,2,0
+decline_purchase,5,5,1,0
+purchase_click_code_shirt,5,4,1.25,0
+rating_given_5,5,5,1,0
+rating_given_2,1,1,1,0
+rating_given_3,1,1,1,0

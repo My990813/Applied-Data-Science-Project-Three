@@ -1,0 +1,28 @@
+# ----------------------------------------
+# Events: Event name
+# Account: test2
+# Property: Shiny App 2
+# ----------------------------------------
+# 
+# All Users
+# Start date: 20250324
+# End date: 20250420
+Event name,Event count,Total users,Event count per active user,Total revenue
+page_view,132,57,2.3157894736842106,0
+scroll,100,41,2.4390243902439024,0
+session_start,77,57,1.3508771929824561,0
+user_engagement,77,23,3.347826086956522,0
+comment_submitted_user_submitted_comment,66,9,7.333333333333333,0
+first_visit,58,57,1.0175438596491229,0
+purchase_click,35,17,2.0588235294117645,0
+comment_submitted,24,10,2.4,0
+purchase_click_graphic_shirt,20,7,2.857142857142857,0
+rating_given,17,9,1.8888888888888888,0
+purchase_click_plain_black_shirt_sale,11,5,2.2,0
+rating_given_4,9,6,1.5,0
+decline_purchase,8,5,1.6,0
+purchase_click_code_shirt,8,7,1.1428571428571428,0
+rating_given_5,5,3,1.6666666666666667,0
+rating_given_3,4,4,1,0
+decline_purchase_did_not_buy_anything,3,2,1.5,0
+rating_given_1,1,1,1,0
