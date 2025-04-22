@@ -18,7 +18,7 @@ library(SHAPforxgboost)
 
 
 
-df <- read_csv("C:/Users/ASUS/Desktop/Spring 2025/5243/PJ3/Final CLeaned Dataset2NewExtra.csv",show_col_types = FALSE)
+df <- read_csv("Final CLeaned Dataset2NewExtra.csv",show_col_types = FALSE)
 
 colnames(df)[ncol(df)] <- "group"
 colnames(df)
@@ -42,7 +42,7 @@ df_clean <- df
 df_clean
 
 ```
-
+##Data Cleaning Process and Assign Clicks
 ```{r}
 library(dplyr)
 
@@ -95,7 +95,7 @@ ggplot(df_clean, aes(x = factor(group), y = click_black_buy, fill = factor(group
   stat_summary(fun = mean, geom = "bar", position = "dodge", width = 0.5) +
   stat_summary(fun.data = mean_se, geom = "errorbar", width = 0.2) +
   labs(
-    title = "Average Number of Red Button Clicks by Group",
+    title = "Average Number of Sale Button Clicks by Group",
     y = "Click Count (Red Button)",
     x = "Group"
   ) +
@@ -111,8 +111,8 @@ ggplot(df_clean, aes(x = factor(group), y = click_black_buy, fill = factor(group
 ## t-test for clicked_buy between groups
 
 
-click_A <- df_clean %>% filter(group == "A") %>% pull(click_black_buy)
-click_B <- df_clean %>% filter(group == "B") %>% pull(click_black_buy)
+click_A <- df_clean |> filter(group == "A") |> pull(click_black_buy)
+click_B <- df_clean |> filter(group == "B") |> pull(click_black_buy)
 
 t_result <- t.test(click_A, click_B, var.equal = FALSE)
 
