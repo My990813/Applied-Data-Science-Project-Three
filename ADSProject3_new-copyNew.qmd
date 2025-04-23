@@ -34,15 +34,66 @@ Cookie-Based Assignment URL for A/B Testing: We created an index.html page on Gi
 
 -   **Statistical Analysis & Results**
 
+    After collecting the data, we first conducted a basic visualization of the click-through rate on the purchase button.\
+
+![Basic Visualization of 2 Groups](data_ana_pj3_files/figure-html/unnamed-chunk-3-1.png){fig-align="center" width="70%"}\
+
+From the visualization, we can observe that there is no clear difference in click rates between the two groups. To explore this further, we conducted a t-test.\
+
+![t-test result](data_ana_pj3_files/t_test_result.png){fig-align="center" width="70%"}\
+
+Based on the t-test result, the difference remains statistically insignificant. We then performed a chi-square test, which is commonly used to evaluate categorical outcomes between groups.\
+
+![Chi-square result](data_ana_pj3_files/chi_square.png){fig-align="center" width="70%"}\
+
+However, the chi-square test also yielded a non-significant result. We suspect that this may be due to the small sample size, which can affect the accuracy of the approximation.
+
+To mitigate this, we additionally performed a Fisher's Exact Test, which is known to be more reliable for small sample sizes. Unfortunately, the Fisher test result was still not significant.
+
+![Fisher test result](data_ana_pj3_files/fisher.png){fig-align="center" width="70%"}
+
+![Fisher result](data_ana_pj3_files/figure-html/unnamed-chunk-7-1.png){fig-align="center" width="70%"}
+
+Since we cannot see clear statistical significance from the previous test, We want to further explore the relationship between user behaviors and the click-through on the black sale button, we trained a classification model using XGBoost.This model is to predict whether a user clicked the black button based on behavioral metrics collected from Google Analytics.
+
+We selected key numerical features along with the experimental group variable, which was encoded as a binary indicator. The result is shown below:\
+![XGBoost result](data_ana_pj3_files/figure-html/unnamed-chunk-8-1.png){fig-align="center" width="70%"}\
+From the result, we can tell the Average session duration, User engagement, and the Click Number are the top three most important factors. However, the group variable (groupA) has relatively low importance in the model, which is consistent with our earlier statistical tests (t-test, chi-square, and fisher test) showing no significant difference in click rates between Group A and Group B.\
+
+To further interpret our XGBoost model, we generated Partial Dependence Plots (PDP) to investigate one of the most important factors- click_number affects the likelihood of a user clicking the buy button.\
+![PDP 1 result](data_ana_pj3_files/figure-html/unnamed-chunk-9-1.png){fig-align="center" width="70%"}\
+To explore interaction effects between click_number and group assignment, we also generated a 2D PDP plot: ![PDP 2 result](data_ana_pj3_files/figure-html/unnamed-chunk-9-2.png){fig-align="center" width="70%"}\
+The interaction plot shows that for both groups A and B, the predicted probability of purchase remains consistently low regardless of click_number. This pattern confirms that, while click_number plays a role in model prediction individually, its interaction with the group assignment does not lead to significant changes.The group is neither direly related to the clicking sale button, nor does it related to the click number.\
+
+we applied SHAP (SHapley Additive exPlanations) to evaluate the contribution of each feature to the prediction of whether a user clicked the purchase button.
+
+We first generated a local SHAP explanation for a single user:\
+![shap 1 result](data_ana_pj3_files/figure-html/unnamed-chunk-10-1.png){fig-align="center" width="70%"}\
+This specific user had high user engagement and session counts, which contributed positively toward the predicted probability of clicking the button.
+
+Then, we used the Feature Imp method to compute a global SHAP-like feature importance across all users:\
+![shap 2 result](data_ana_pj3_files/figure-html/unnamed-chunk-10-2.png){fig-align="center" width="70%"}\
+From this result, we can tell that User engagement and Average session duration are the most important features globally for the model, and the group difference has no contribution towards the clicks for the sale button.\
+
+we visualized the distribution of SHAP values for each feature using violin plots to further explore the feature-level differences between group A and group B. As shown below, certain variables such as click_number, User.engagement, and Engaged.sessions demonstrated noticeable divergence in SHAP contributions between the two groups.\
+![shap last result](data_ana_pj3_files/figure-html/unnamed-chunk-12-1.png){fig-align="center" width="70%"}\
+For instance, click_number appears to have a wider SHAP range in group B, which means this feature plays a more substantial role in driving prediction shifts for group B. On the other hand, features like Exits and Entrances exhibit nearly flat SHAP distributions for both groups.
+
 -   **Interpretation & Conclusion**
+
+In conclusion, the group difference—namely the use of a red color for the sales button—does not appear to have a statistically significant impact on users' tendency to click the purchase button. Instead, features such as average session duration, user engagement, and click number show stronger predictive power in influencing user behavior.
+
+However, slight variations in SHAP values for user engagement and click number between the two groups suggest that the red color might still have a subtle effect on user interaction. This implies that while the red button alone is not a dominant factor, it may contribute marginally to the overall clicking behavior.\
 
 -   **Challenges & Limitations**
 
-    -   Google Analytics data take longer time to update at around 24-48 hours, so we need to wait until we get the data we want.
+```         
+-   Google Analytics data take longer time to update at around 24-48 hours, so we need to wait until we get the data we want.
 
-    -   The file google-analytics.html was first designed with a tag event_name "purchase_click" for all shirt items, with different event_label 'Plain Black Shirt (Sale)', 'Code Shirt', and 'Graphic Shirt'. However, we later realized that it was difficult to retreived the data for event_label separately, so we change to incorporate all details in event_name which are 'purchase_click_plain_black_shirt_sale,' 'purchase_click_code_shirt' and 'purchase_click_graphic_shirt'.
+-   The file google-analytics.html was first designed with a tag event_name "purchase_click" for all shirt items, with different event_label 'Plain Black Shirt (Sale)', 'Code Shirt', and 'Graphic Shirt'. However, we later realized that it was difficult to retreived the data for event_label separately, so we change to incorporate all details in event_name which are 'purchase_click_plain_black_shirt_sale,' 'purchase_click_code_shirt' and 'purchase_click_graphic_shirt'.
 
-    -   The cookie-based assignment did not work properly, as a different version of the website would sometimes appear on subsequent clicks, so we added a small delay (100ms) to ensure the cookie is saved before the page redirects.
+-   The cookie-based assignment did not work properly, as a different version of the website would sometimes appear on subsequent clicks, so we added a small delay (100ms) to ensure the cookie is saved before the page redirects.
+```
 
 -   **Contribution:**
 
