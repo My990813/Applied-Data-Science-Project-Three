@@ -3,6 +3,8 @@ Research question: Does red color for sales affect people's choice of buying clo
 
 Motivations: In a world filled with countless choices, marketing strategies—such as those used during major sales events like Black Friday—are crafted to influence consumer decisions. It is interesting to see the consistent use of the color red in advertisements across different countries. This widespread practice raises a compelling question: does the color red actually increase urgency in consumer behavior, encouraging quicker or more impulsive purchases?
 ## Quick Start
+**Click this link below to be redirected to your version of the app. This is the link we use for A/B Testing.**
+- https://ruangkawprc.github.io/project3_ab_test
 **Clone the Repository:**
 ```
 
