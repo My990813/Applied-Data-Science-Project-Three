@@ -3,6 +3,9 @@ Research question: Does red color for sales affect people's choice of buying clo
 
 Motivations: In a world filled with countless choices, marketing strategies—such as those used during major sales events like Black Friday—are crafted to influence consumer decisions. It is interesting to see the consistent use of the color red in advertisements across different countries. This widespread practice raises a compelling question: does the color red actually increase urgency in consumer behavior, encouraging quicker or more impulsive purchases?
 ## Quick Start
+**Click this link below to be redirected to your version of the app. This is the link we use for A/B Testing.**
+- https://ruangkawprc.github.io/project3_ab_test
+  
 **Clone the Repository:**
 ```
 
@@ -15,11 +18,11 @@ We have two websites–Website A and Website B. On the website, we have three T-
 ## Hypothesis
 Our hypothesis is that the color red has a statistically significant effect on increasing the purchase click rate of the plain black shirt item.
 
-## Website A: app1
+## Website A: app1 (Treatment Group)
 - Website A uses red to highlight the sale item—a plain black shirt—while other items, such as the coded shirt and graphic shirt, are shown in mint green. 
 - Click the link for Website A here: https://ruangkawprc.shinyapps.io/app1/
 
-## Website B: app2
+## Website B: app2 (Control Group)
 - Website B uses mint green for the sale item, matching the color used for the other items in the store.
 - Click the link for Website B here: https://ruangkawprc.shinyapps.io/app2/
 
