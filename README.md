@@ -15,11 +15,11 @@ We have two websites–Website A and Website B. On the website, we have three T-
 ## Hypothesis
 Our hypothesis is that the color red has a statistically significant effect on increasing the purchase click rate of the plain black shirt item.
 
-## Website A: app1
+## Website A: app1 (Treatment Group)
 - Website A uses red to highlight the sale item—a plain black shirt—while other items, such as the coded shirt and graphic shirt, are shown in mint green. 
 - Click the link for Website A here: https://ruangkawprc.shinyapps.io/app1/
 
-## Website B: app2
+## Website B: app2 (Control Group)
 - Website B uses mint green for the sale item, matching the color used for the other items in the store.
 - Click the link for Website B here: https://ruangkawprc.shinyapps.io/app2/
 
