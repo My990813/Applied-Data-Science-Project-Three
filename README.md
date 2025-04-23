@@ -21,8 +21,17 @@ In this project, we are designing and conducting an A/B Test experiment. A/B Tes
 # Cookie-Based Assignment URL for A/B Testing
 - We created an index.html page on GitHub to serve as a redirect link that randomly sends users—with a 50% probability—to either Website A or Website B. The assigned group is stored in a cookie for 30 days to ensure consistent redirection on future visits.
 - The link is generated from here: https://github.com/ruangkawprc/project3_ab_test
-- Click this link to test: https://ruangkawprc.github.io/project3_ab_test
+- Click this link to redirect to your version of the app: https://ruangkawprc.github.io/project3_ab_test
 
 # Data Collection
 - We sent the two website randomly to two stats students groups and our classmates. In total, 69 students entered Website A and 57 students entered Website B. They clicked on the website and left us valuable data.
 - We analyzed the data via Google Analytics. In Google Analytics–View user engagement & retention tab, we are able to download the datasets for different events such as different kinds of purchase on three T-shirts. In User Explorer, we are able to download the datasets for individual users behaviors.
+
+# Statistical Analysis & Results
+- We use different statistical methods, including, t-test, chi-square test, Fisher's Exact Test, XGBoost feature importance, Partial Dependence Plots (PDP) and SHAP values.
+- Please click the file data_ana_pj3.qmd to see the full detail of our statistical analysis.
+
+# Conclusion
+In conclusion, the group difference—namely the use of a red color for the sales button—does not appear to have a statistically significant impact on users' tendency to click the purchase button. Instead, features such as average session duration, user engagement, and click number show stronger predictive power in influencing user behavior.
+
+However, slight variations in SHAP values for user engagement and click number between the two groups suggest that the red color might still have a subtle effect on user interaction. This implies that while the red button alone is not a dominant factor, it may contribute marginally to the overall clicking behavior.
