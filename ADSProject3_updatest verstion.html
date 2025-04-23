@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ADSProject3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="ADSProject3_updatest verstion_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ADSProject3_updatest verstion_files/libs/quarto-html/quarto.js"></script>
+<script src="ADSProject3_updatest verstion_files/libs/quarto-html/popper.min.js"></script>
+<script src="ADSProject3_updatest verstion_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="ADSProject3_updatest verstion_files/libs/quarto-html/anchor.min.js"></script>
+<link href="ADSProject3_updatest verstion_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ADSProject3_updatest verstion_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="ADSProject3_updatest verstion_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="ADSProject3_updatest verstion_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="ADSProject3_updatest verstion_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ADSProject3</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="project-3-ab-test" class="level2">
+<h2 class="anchored" data-anchor-id="project-3-ab-test">Project 3: A/B Test</h2>
+<p>Author: Hanzhong Yang (hy2870) Preach Apintanapong (pa2615) Mengyan Li (ml4779) Raymond Li (jl6787)</p>
+<ul>
+<li><p><strong>Introduction &amp; Research Question</strong></p>
+<p>In this project, we are designing and conducting an A/B Test experiment. A/B Test plays an important role in data science, especially for decision-making and user experience optimization. The idea behind A/B Testing is you have two group–A and B, and Group A is the original version and Group B is the modified version. You are comparing how each group behaves. By comparing the outcome for Group A and Group B, you will find out which one is better for you to use.</p>
+<p>Research question: Does red color for sales affect people’s choice of buying clothes?</p>
+<p>Motivations: In a world filled with countless choices, marketing strategies—such as those used during major sales events like Black Friday—are crafted to influence consumer decisions. It is interesting to see the consistent use of the color red in advertisements across different countries. This widespread practice raises a compelling question: does the color red actually increase urgency in consumer behavior, encouraging quicker or more impulsive purchases?</p></li>
+<li><p><strong>Hypothesis</strong></p>
+<p>Our hypothesis is that the color red has a statistically significant effect on increasing the purchase click rate of the plain black shirt item.<br>
+</p></li>
+<li><p><strong>Experimental Design &amp; Methodology</strong></p>
+<p>We have two websites–Website A and Website B. On the website, we have three T-shirts–Plain Black Shirt, Code Shirt, and Graphic Shirt. The Plain Black Shirt is $100 with 25% discount. The Code Shirt is $75. The Graphic Shirt is $50. You have $75 in balance to buy the T-shirt. You can buy any T-shirt. But the balance is only sufficent for you to buy one T-shirt. If you already buy one and want to buy another. The website will pop up “Insufficient funds to buy this item”. The Plain Black Shirt has no figures or anything on it. But the sales button is in red and it has a sale for website A, but in color similar to other items for website B to see if red color and sales affect user click rates. The Plain Black Shirt and Code Shirt have same prices of $75, but the code shirt doesn’t use sale strategy and simply state the final price. Graphic Shirt is cheaper at $50 and is used to be a comparison. You can also Rate the Super Graphic Store or leave comments.</p>
+<p>Difference between website A and website B: Website A uses red to highlight the sale item—a plain black shirt—while other items, such as the coded shirt and graphic shirt, are shown in mint green. On the other hand, Website B uses mint green for the sale item, matching the color used for the other items in the store.</p></li>
+</ul>
+<p>Cookie-Based Assignment URL for A/B Testing: We created an index.html page on GitHub to serve as a redirect link that randomly sends users—with a 50% probability—to either Website A or Website B. The assigned group is stored in a cookie for 30 days to ensure consistent redirection on future visits.</p>
+<ul>
+<li><p><strong>Data Collection</strong></p>
+<p>We sent the two website randomly to two stats students groups and our classmates. In total, 69 students entered Website A and 57 students entered Website B. They clicked on the website and left us valuable data.</p>
+<p>We analyzed the data via Google Analytics. In Google Analytics–View user engagement &amp; retention tab, we are able to download the datasets for different events such as different kinds of purchase on three T-shirts. In User Explorer, we are able to download the datasets for individual users behaviors.</p></li>
+</ul>
+<!-- -->
+<ul>
+<li><p><strong>Statistical Analysis &amp; Results</strong></p>
+<p>To evaluate whether the color of the sale button influenced user engagement in our A/B testing experiment, we conducted a comprehensive statistical analysis comparing Group A (which saw a red-colored sale button) and Group B (which saw a mint green version of the same button). We first conducted a basic visualization of the click-through rate on the purchase button.<br>
+</p></li>
+</ul>
+<p><img src="data_ana_pj3_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center" style="width:70.0%" alt="Basic Visualization of 2 Groups"><br>
+</p>
+<p>From the plot above, we observe that Group A users had a slightly higher average number of clicks (0.203) compared to Group B users (0.175). While this suggests a marginal increase in engagement under the red button condition, the visual difference was small and warranted statistical testing to determine its significance.</p>
+<p>To assess the statistical validity of this difference, we performed a Welch two-sample t-test, which does not assume equal variances.<br>
+</p>
+<p><img src="data_ana_pj3_files/t_test_result.png" class="img-fluid quarto-figure quarto-figure-center" style="width:70.0%" alt="t-test result"><br>
+</p>
+<p>The test yielded a t-statistic of 0.213 and a p-value of 0.8315. The 95% confidence interval for the mean difference ranged from -0.2275 to 0.2824. Since the p-value far exceeds the typical alpha level of 0.05, we fail to reject the null hypothesis and conclude that the observed difference in click counts between the two groups is not statistically significant.</p>
+<p>Next, we transformed the click data into a binary indicator—1 if the user clicked at least once, 0 otherwise—to examine group-level differences in click-through likelihood. We then conducted a chi-square test of independence.</p>
+<p><img src="data_ana_pj3_files/chi_square.png" class="img-fluid quarto-figure quarto-figure-center" style="width:70.0%" alt="Chi-square result"><br>
+The chi-square test returned a statistic close to zero with a p-value of 1.0, indicating no statistically significant association between group assignment and whether a user clicked the sale button. We suspect this may be partially attributed to the low click frequency in both groups.</p>
+<p>To account for the small sample size, we conducted a two-sample proportion test. In Group A, 6 out of 69 users clicked the button (≈8.70%), while in Group B, 5 out of 57 users clicked (≈8.77%). The proportion test yielded a p-value of 0.988 and a 95% confidence interval ranging from -0.0998 to 0.0983. These results confirm that there is no statistically significant difference in the proportion of users clicking between the two button color conditions.</p>
+<p>Following best practices for small cell counts, we additionally ran a Fisher’s Exact Test.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_ana_pj3_files/fisher.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Fisher test result</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_ana_pj3_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Fisher result</figcaption>
+</figure>
+</div>
+<p>This test produced a p-value of 1.0 and an odds ratio of approximately 0.99, with a wide confidence interval. The results reaffirmed previous findings and further supported the conclusion that group assignment had no significant influence on click behavior.</p>
+<p>To complement our hypothesis tests with a predictive modeling perspective, we trained an XGBoost binary classifier to predict whether a user clicked the black shirt button based on session-level features recorded from Google Analytics. These features included metrics such as total event count, session duration, engagement rate, and group assignment.<br>
+<img src="data_ana_pj3_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center" style="width:70.0%" alt="XGBoost result"><br>
+From the result, we can tell the Average session duration, User engagement, and the Click Number are the top three most important factors. However, the group variable (groupA) has relatively low importance in the model, which is consistent with our earlier statistical tests (t-test, chi-square, and fisher test) showing no significant difference in click rates between Group A and Group B.<br>
+</p>
+<p>To further interpret our XGBoost model, we generated Partial Dependence Plots (PDP) to investigate one of the most important factors- click_number affects the likelihood of a user clicking the buy button.<br>
+<img src="data_ana_pj3_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center" style="width:70.0%" alt="PDP 1 result"><br>
+To explore interaction effects between click_number and group assignment, we also generated a 2D PDP plot: <img src="data_ana_pj3_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid quarto-figure quarto-figure-center" style="width:70.0%" alt="PDP 2 result"><br>
+The interaction plot shows that for both groups A and B, the predicted probability of purchase remains consistently low regardless of click_number. This pattern confirms that, while click_number plays a role in model prediction individually, its interaction with the group assignment does not lead to significant changes. The group is neither direly related to the clicking sale button, nor does it related to the click number.<br>
+</p>
+<p>We applied SHAP (SHapley Additive exPlanations) to evaluate the contribution of each feature to the prediction of whether a user clicked the purchase button.</p>
+<p>We first generated a local SHAP explanation for a single user:<br>
+<img src="data_ana_pj3_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center" style="width:70.0%" alt="shap 1 result"><br>
+This specific user had high user engagement and session counts, which contributed positively toward the predicted probability of clicking the button.</p>
+<p>Then, we used the Feature Imp method to compute a global SHAP-like feature importance across all users:<br>
+<img src="data_ana_pj3_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid quarto-figure quarto-figure-center" style="width:70.0%" alt="shap 2 result"><br>
+From this result, we can tell that User engagement and Average session duration are the most important features globally for the model, and the group difference has no contribution towards the clicks for the sale button.<br>
+</p>
+<p>we visualized the distribution of SHAP values for each feature using violin plots to further explore the feature-level differences between group A and group B. As shown below, certain variables such as click_number, User.engagement, and Engaged.sessions demonstrated noticeable divergence in SHAP contributions between the two groups.<br>
+<img src="data_ana_pj3_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center" style="width:70.0%" alt="shap last result"><br>
+For instance, click_number appears to have a wider SHAP range in group B, which means this feature plays a more substantial role in driving prediction shifts for group B. On the other hand, features like Exits and Entrances exhibit nearly flat SHAP distributions for both groups.</p>
+<ul>
+<li><strong>Interpretation &amp; Conclusion</strong></li>
+</ul>
+<p>In conclusion, the group difference—namely the use of a red color for the sales button—does not appear to have a statistically significant impact on users’ tendency to click the purchase button. Instead, features such as average session duration, user engagement, and click number show stronger predictive power in influencing user behavior.</p>
+<p>However, slight variations in SHAP values for user engagement and click number between the two groups suggest that the red color might still have a subtle effect on user interaction. This implies that while the red button alone is not a dominant factor, it may contribute marginally to the overall clicking behavior.<br>
+</p>
+<ul>
+<li><strong>Challenges &amp; Limitations</strong></li>
+</ul>
+<pre><code>-   Google Analytics data take longer time to update at around 24-48 hours, so we need to wait until we get the data we want.
+
+-   The file google-analytics.html was first designed with a tag event_name "purchase_click" for all shirt items, with different event_label 'Plain Black Shirt (Sale)', 'Code Shirt', and 'Graphic Shirt'. However, we later realized that it was difficult to retreived the data for event_label separately, so we change to incorporate all details in event_name which are 'purchase_click_plain_black_shirt_sale,' 'purchase_click_code_shirt' and 'purchase_click_graphic_shirt'.
+
+-   The cookie-based assignment did not work properly, as a different version of the website would sometimes appear on subsequent clicks, so we added a small delay (100ms) to ensure the cookie is saved before the page redirects.</code></pre>
+<ul>
+<li><p><strong>Contribution:</strong></p>
+<p>Hanzhong Yang (hy2870): Coding for Statistical Analysis,Statistical Analysis, Statistical Results, Report drafting</p>
+<p>Preach Apintanapong (pa2615): Formal website building, Google Analytics building, Report drafting</p>
+<p>Mengyan Li (ml4779): Original website building, User Explorer Building, Report drafting</p>
+<p>Raymond Li (jl6787): Some Coding for Statistical Analysis, Report refining.</p></li>
+<li><p>** Github Link:** https://github.com/My990813/Applied-Data-Science-Project-Three</p></li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

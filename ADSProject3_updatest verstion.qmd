@@ -1,6 +1,6 @@
 ---
 title: "ADSProject3"
-format: pdf
+format: html
 editor: visual
 ---
 
