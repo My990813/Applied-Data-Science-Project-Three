@@ -22,3 +22,7 @@ In this project, we are designing and conducting an A/B Test experiment. A/B Tes
 - We created an index.html page on GitHub to serve as a redirect link that randomly sends users—with a 50% probability—to either Website A or Website B. The assigned group is stored in a cookie for 30 days to ensure consistent redirection on future visits.
 - The link is generated from here: https://github.com/ruangkawprc/project3_ab_test
 - Click this link to test: https://ruangkawprc.github.io/project3_ab_test
+
+# Data Collection
+- We sent the two website randomly to two stats students groups and our classmates. In total, 69 students entered Website A and 57 students entered Website B. They clicked on the website and left us valuable data.
+- We analyzed the data via Google Analytics. In Google Analytics–View user engagement & retention tab, we are able to download the datasets for different events such as different kinds of purchase on three T-shirts. In User Explorer, we are able to download the datasets for individual users behaviors.
