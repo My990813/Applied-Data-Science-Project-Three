@@ -2,7 +2,12 @@
 Research question: Does red color for sales affect people's choice of buying clothes?
 
 Motivations: In a world filled with countless choices, marketing strategies—such as those used during major sales events like Black Friday—are crafted to influence consumer decisions. It is interesting to see the consistent use of the color red in advertisements across different countries. This widespread practice raises a compelling question: does the color red actually increase urgency in consumer behavior, encouraging quicker or more impulsive purchases?
+## Quick Start
+**Clone the Repository:**
+```
 
+   git clone https://github.com/My990813/Applied-Data-Science-Project-Three.git
+```
 # Experimental Design & Methodology
 
 We have two websites–Website A and Website B. On the website, we have three T-shirts--Plain Black Shirt, Code Shirt, and Graphic Shirt. The Plain Black Shirt is $100 with 25% discount. The Code Shirt is $75. The Graphic Shirt is $50. You have $75 in balance to buy the T-shirt. You can buy any T-shirt. But the balance is only sufficent for you to buy one T-shirt. If you already buy one and want to buy another. The website will pop up "Insufficient funds to buy this item". The Plain Black Shirt has no figures or anything on it. But the sales button is in red and it has a sale for website A, but in color similar to other items for website B to see if red color and sales affect user click rates. The Plain Black Shirt and Code Shirt have same prices of $75, but the code shirt doesn't use sale strategy and simply state the final price. Graphic Shirt is cheaper at $50 and is used to be a comparison. You can also Rate the Super Graphic Store or leave comments.
