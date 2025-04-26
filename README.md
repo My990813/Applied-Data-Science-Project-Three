@@ -40,7 +40,7 @@ In this project, we are designing and conducting an A/B Test experiment. A/B Tes
 
 # Statistical Analysis & Results
 - We use different statistical methods, including, t-test, chi-square test, Fisher's Exact Test, XGBoost feature importance, Partial Dependence Plots (PDP) and SHAP values.
-- Please click the file data_ana_pj3.qmd to see the full detail of our statistical analysis.
+- Please click the file data_analysis_pj3.qmd to see the full detail of our statistical analysis.
 
 # Conclusion
 In conclusion, the group difference—namely the use of a red color for the sales button—does not appear to have a statistically significant impact on users' tendency to click the purchase button. Instead, features such as average session duration, user engagement, and click number show stronger predictive power in influencing user behavior.
